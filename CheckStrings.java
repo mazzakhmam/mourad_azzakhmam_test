@@ -6,22 +6,27 @@ public class CheckStrings {
 
     private String version;
 
+    // getter
     public String get() {
       return this.version;
     }
 
+    // Constructor
     public VersionString(String version) {
       if (version == null)
         throw new IllegalArgumentException("Version can not be null");
+      // checking the conformity of the new entred string version
       if (!version.matches("[0-9]+(\\.[0-9]+)*"))
         throw new IllegalArgumentException("Invalid version format");
       this.version = version;
     }
 
+    // comparing both version : the existing one with the seconde one
     @Override
     public int compareTo(VersionString secondVersion) {
       if (secondVersion == null)
         return 1;
+      //spliting the strings based on .
       String[] firstVersionArray = this.get().split("\\.");
       String[] secondVersionArray = secondVersion.get().split("\\.");
       int length = Math.max(firstVersionArray.length, secondVersionArray.length);
